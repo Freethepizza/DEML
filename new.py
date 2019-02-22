@@ -13,6 +13,7 @@ open = open("test.deml", "r")
 #testing tags
 tag_dictionary=["html","head","body","a","div","h1","h2","h3","h4","h5","h6","li","ol","ul","p","span"]
 #testing tags
+special_dictionary=[]
 
 tag_transformA=["<html>","<head>","<body>","<a>","<div>","<h1>","<h2>",
 "<h3>","<h4>","<h5>","<h6>","<li>","<ol>","<ul>","<p>","<span>"]
@@ -39,7 +40,7 @@ def AddtoStack():
             print(line.strip() + " [Added to Stacker]")
             stackA.append(line)
         if not isolate(line):
-            print(line.strip() + " [Not added to Stacker]")
+            print(line.strip() + " [Not added to Stacker (NOT A TAG)]")
 
 AddtoStack()
 print("\n\nStackerA content: " + str(stackA))
