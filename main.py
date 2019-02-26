@@ -1,49 +1,78 @@
-open = open("test.deml", "r")
-#write = open("test.html", "w")
-tags_=["html","head","body","a","b","div","h1","h2","h3","h4","h5","h6","li","ol","p","ul","span"]
-cline = 0
-count = 0
-num=0
-endings = []
-code = []
-moar = []
-moar2 = []
-full = []
-for line in open:
+#
+#    .___             .__
+#  __| _/____   _____ |  |
+# / __ |/ __ \ /     \|  |
+#/ /_/ \  ___/|  Y Y  \  |__
+#\____ |\___  >__|_|  /____/
+#     \/    \/      \/
+#
+#Don't expect a markup language (En serio, no lo es.)
+html = open("test.html","w")
+open = open("test.deml","r")
+#tag_dictionary
+tag_dictionary=["html{","head{","body{","a{","div{",
+"h1{","h2{","h3{","h4{","h5{","h6{","li{","ol{","ul{","p{","span{"]
+tag_transformA=["<html>","<head>","<body>","<a>","<div>","<h1>","<h2>",
+"<h3>","<h4>","<h5>","<h6>","<li>","<ol>","<ul>","<p>","<span>"]
+#special_dictionary
+special_dictionary=[]
+#GLOBALS:
+global close
+global tag
+#Stacks
+GeneralStack = []
+OrderStack = []
+PreStack = []
+PostStack = []
+def Stacking():
+    for line in open:
+        GeneralStack.append(line.strip())
+    for stack in GeneralStack:
+        if stack in tag_dictionary:
+            PreStack.append("<"+stack.replace("{","")+">")
+        elif "}" in stack:
+            PreStack.append(stack)
+        else:
+            PreStack.append(stack)
+#VERIFY TAGS IN PRESTACK BY USING DICTIONARY
+'''
+def Tag():
+    for x in PreStack:
+        if x in tag_transformA:
+            return True
+        else:
+           return False
+'''
 
-    lineaux = line.rstrip()
-    sline = line.split("{")
-    cline+=1
-    if "{" in lineaux:
-        #print("Open: " + str(cline))
-        print("<" + sline[0].strip() + ">" + str(cline))
-        endings.append("<" + sline[0] + ">")
-    if "}" in lineaux:
-        print("Closed: " + str(cline))
-        endings.append(str(cline))
-    size = len(endings)
-    code.append(line.strip())
+Stacking()
 
-print("\n\ntamaño o/c: " + str(size) + "\n\n")
-print("BODY ARRAY:"+ str(endings))
-print("RAW ARRAY: "+ str(code))
-for tag in code:
-    count+=1
-    print(tag)
-    if "}" in tag:
-        moar.append(str(count) + " " + tag)
-    if "{" in tag:
-        moar2.append(str(count) + " " + tag)
-    full.append(tag)
-print(moar2)
-print(moar)
-print(full)
 
-for x in full:
-    num+=1
-    if "}" in full[num-1]:
-        print("</"+full[num-2]+">")
-    else:
-        print("<"+full[num-1]+">")
-print(len(tags_))
-print(tags_)
+for i in range(0, len(PreStack)-1):
+        if PreStack[i+1] in tag_transformA:
+            PostStack.append(PreStack[i].replace("<","</"))
+        elif PreStack[i] in tag_transformA:
+            OrderStack.append(PreStack[i].replace("<","</"))
+#REPEAT LOOPS NEED IMPROVEMENT
+for x in PostStack:
+    if "}" in PostStack:
+        PostStack.remove("}")
+
+for y in PostStack:
+    if "}" in PostStack:
+        PostStack.remove("}")
+
+PostStack.reverse()#OTRA ÑAPA
+for z in range(0, len(PostStack)):
+
+    OrderStack.append(PostStack[z])
+count=0
+
+for w in range(0,len(PreStack)):
+    if "}" in PreStack[w]:
+        count+=1
+        PreStack[w] = OrderStack[count-1]
+
+print(PreStack)
+for xyz in PreStack:
+    print(xyz)
+    html.write(xyz+"\n")
