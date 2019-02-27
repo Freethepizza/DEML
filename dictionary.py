@@ -10,7 +10,7 @@
 
 
 #PRE
-Simple_dictionary = ["html","head","body","a","div","h1","h2","h3","h4",
+Simple_dictionary = ["html","head","body","footer","a","div","h1","h2","h3","h4",
 "h5","h6","li","ol","ul","p","span","b","i"]
 Complex_dictionary = []
 Special_dictionary = []
