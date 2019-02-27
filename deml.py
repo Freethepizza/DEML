@@ -11,6 +11,7 @@
 #Imports:
 from dictionary import *
 from stacker import *
+from error import *
 #html = open("test.html","w")
 deml = open("test.deml","r")
 
@@ -42,7 +43,8 @@ def HTML_Precompilation():
         if element in Stack_A:
             print("Open INDEX: "+str(count))
         elif "}" in element:
-            print("close INDEX: "+str(count))
+            print("\tClose INDEX: "+str(count))
+
 
 Line_Parsing()
 HTML_Precompilation()
@@ -53,3 +55,6 @@ print("|Stack_A: "+ str(Stack_A))
 print("|Stack_B: "+ str(Stack_B))
 print("|Stack_C: "+ str(Stack_C))
 print("|GeneralStack: "+ str(GeneralStack))
+
+
+CheckIntegrity_A()
