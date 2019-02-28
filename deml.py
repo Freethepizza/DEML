@@ -7,6 +7,7 @@
 #     \/    \/      \/
 #
 #Don't expect a markup language (En serio, no lo es.)
+#GENERAL
 
 #Imports:
 from dictionary import *
@@ -37,17 +38,27 @@ def Tag_Trasform(stack):
 
 
 def HTML_Precompilation():
-    count=-1
+    count=1
     for element in GeneralStack:
         count+=1
         if element in Stack_A:
             print("Open INDEX: "+str(count))
+            ControlStack.append("O")
         elif "}" in element:
-            print("\tClose INDEX: "+str(count))
+            ControlStack.append("C")
+            print("Close INDEX: "+str(count))
+        else:
+            ControlStack.append("T")
+            print("\tText INDEX: " + str(count))
+
 
 
 Line_Parsing()
+To_Nesting()
 HTML_Precompilation()
+To_FinalStack()
+print(NestingStack)
+print(FinalStack)
 
 
 print("\n-----------TESTS-------------------------------------------")
@@ -55,6 +66,7 @@ print("|Stack_A: "+ str(Stack_A))
 print("|Stack_B: "+ str(Stack_B))
 print("|Stack_C: "+ str(Stack_C))
 print("|GeneralStack: "+ str(GeneralStack))
+print("|ControlStack: "+ str(ControlStack))
 
 
 CheckIntegrity_A()
