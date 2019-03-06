@@ -2,15 +2,15 @@ head{
 
 }
 body{
-h1{
-hello world, I'm DEML
-}
 div{
-h2{
-Don't expect a markup language
+h1{
+Hello World!
+}
+p{
+This is DEML, an HTML preprocessor so easy even your grandpa can make his own website without any difficulties
+}
 }
 span{
-srsly
-}
+Powered by DEML (Don't Expect a Markup Language)
 }
 }
