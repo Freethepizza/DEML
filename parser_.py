@@ -12,16 +12,12 @@ for lines in deml:
     ToStack_A(lines)
 CleanStack(Stack_A)
 Translation(Stack_A)
-
+iterator = iter(RNA)
 
 def Compile():
-    for i in range(0, len(RNA)):
-        if RNA[i] in Simple_dictionary:
-            stack.push("<"+RNA[i]+">")
-            RNA[i] = "<"+RNA[i]+">"
-        elif RNA[i] == "#":
-            continue
-        elif RNA[i] == ")":
-            newtag = str(stack.last_item()).replace("<","</")
-            stack.pop()
-            RNA[i] = newtag
+    nextpos=0
+    for i in ToString(DNA):
+        nextpos+=1
+        pos= nextpos-1
+        if i=="(" and DNA[pos+1]=="#":
+            print("hasta la pasta")

@@ -40,6 +40,33 @@ def Translation(what):
 def ToString(what):
     return "".join(what)
 
+def isTag(what):
+        if what in Simple_dictionary:
+            return True
+        else:
+            return False
+def isText(what):
+    if what != ")" and not isTag(what):
+        return True
+    else:
+        return False
+
+def isClose(what):
+    if what == ")" and not isTag(what) and not isText(what):
+        return True
+    else:
+        return False
+
+def IsA(what):
+    if isTag(what):
+        return "tag"
+    else:
+        if isText(what):
+            return "text"
+        elif isClose(what):
+            return "close"
+
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -54,7 +81,7 @@ class Stack:
         return self.items.pop(0)
 
     def last_item(self):
-        return self.items[-1]
+        return self.items[0]
 
     def print_stack(self):
         print(self.items)
