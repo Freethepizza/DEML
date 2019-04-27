@@ -1,0 +1,55 @@
+head{
+<link rel="stylesheet" href="style.css">
+}
+body{
+h1{
+Hello.
+}
+h2{
+This is DEML,The Don't Expect a Markup Language way of making the web.
+}
+h4{
+DEML is an HTML preprocessor with a super easy syntax even the dumbest person you know would be able to make nice looking websites in minutes!
+}
+ul{
+h3{
+ROADMAP(Official):
+}
+li{
+Simple syntax for lists.
+}
+li{
+Styling
+}
+li{
+Attributes for tags.
+}
+li{
+Parsing improvements.
+}
+li{
+WebApp
+}
+li{
+Universal styling (CSS integrated mini framework).
+}
+}
+ul{
+h3{
+<br>
+ROADMAP(Unofficial):
+}
+li{
+Text editor.
+}
+li{
+Blogging platform.
+}
+li{
+SASS/LESS integration.
+}
+li{
+C/C++ Version.
+}
+}
+}
